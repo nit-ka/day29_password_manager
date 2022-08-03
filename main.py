@@ -71,14 +71,14 @@ def find_password():
         messagebox.showinfo(title="Password manager - warning", message="No saved passwords in your program yet.")
     else:
         searched_website = entry_website.get()
-        try:
-            search_result = messagebox.showinfo(title="Search result",
-                                                message= f"Website: {searched_website}\n"
-                                                         f"Email/Username: {data[searched_website]['email']}\n"
-                                                         f"Password: {data[searched_website]['password']}")
-        except KeyError:
+        if searched_website in data:
+            messagebox.showinfo(title="Search result",
+                                message=f"Website: {searched_website}\n"
+                                        f"Email/Username: {data[searched_website]['email']}\n"
+                                        f"Password: {data[searched_website]['password']}")
+        else:
             messagebox.showinfo(title="Password manager - warning",
-                                message=f"No data for {searched_website} website.")
+                                message=f"""No data for "{searched_website}" website.""")
 
 
 # UI SETUP
